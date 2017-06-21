@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.daminshah.newsapp.MainActivity">
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginTop="16sp">
+    <TextView
+        android:id="@+id/url_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Click on The Search Button , Your Response will appear over here"
+        android:textSize="22sp"
+
+        />
+    
+
+
+</ScrollView>
+
+
+     <TextView
+         android:id="@+id/error_message_display"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:padding="16dp"
+         android:textSize="22sp"
+         android:text="@string/error_message"
+         android:visibility="invisible"/>
+     <ProgressBar
+         android:id="@+id/pb_loading_indicator"
+         android:layout_height="42dp"
+         android:layout_width="42dp"
+         android:layout_gravity="center"
+         android:visibility="invisible" />
+
+
+ </FrameLayout>
+

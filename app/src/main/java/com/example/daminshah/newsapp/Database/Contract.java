@@ -7,9 +7,9 @@ import android.provider.BaseColumns;
  */
 
 public class Contract {
-
+        //Created table and column names for all the fields in the newsapp
     public static class TABLE_ARTICLES implements BaseColumns {
-        public static final String TABLE_NAME="articles";
+        public static final String TABLE_NAME="news";
         public static final String COLUMN_NAME_AUTHOR="author";
         public static final String COLUMN_NAME_TITLE="title";
         public static final String COLUMN_NAME_DESCRIPTION="description";

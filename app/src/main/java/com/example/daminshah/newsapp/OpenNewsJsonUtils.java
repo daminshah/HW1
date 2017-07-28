@@ -21,11 +21,11 @@ public class OpenNewsJsonUtils {
     {
 
         final String NEWS_ARTICLES="articles";
-       // final String NEWS_AUTHOR="author";
+        final String NEWS_AUTHOR="author";
         final String NEWS_TITLE="title";
         final String NEWS_DESCRIPTION="description";
         final String NEWS_URL="url";
-       // final String NEWS_URLTOIMAGE="urlToImage";
+       final String NEWS_URLTOIMAGE="urlToImage";
         final String NEWS_PUBLISHEDAT="publishedAt";
         final String NEWS_STATUS="status";
 
@@ -67,13 +67,13 @@ public class OpenNewsJsonUtils {
 
             JSONObject news=newsArray.getJSONObject(i);
 
-          //  author=news.getString(NEWS_AUTHOR);
+            author=news.getString(NEWS_AUTHOR);
             title=news.getString(NEWS_TITLE);
             description=news.getString(NEWS_DESCRIPTION);
             url=news.getString(NEWS_URL);
-           // urlToimage=news.getString(NEWS_URLTOIMAGE);
+            urlToimage=news.getString(NEWS_URLTOIMAGE);
            publish=news.getString(NEWS_PUBLISHEDAT);
-            NewsItem item=new NewsItem(title,description,url,publish);
+            NewsItem item=new NewsItem(author,title,description,url,urlToimage,publish);
             parsedNewsData.add(item);
 
          //   parsedNewsData[i]=author +"-"+ title + "-" +description+ "-" +url+ "-" +urlToimage+ "-" + publish;

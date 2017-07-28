@@ -11,8 +11,8 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION=1;
-    private static final String DATABASE_NAME="articles.db";
+    private static final int DATABASE_VERSION=3;
+    private static final String DATABASE_NAME="news.db";
     private static final String TAG="dbhelper";
 
     public DBHelper(Context context) {
@@ -35,6 +35,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "Create table SQL: " + queryString);
         db.execSQL(queryString);
+
+
+        //Executed the query for Creating all the Relevant Column names
     }
 
     @Override

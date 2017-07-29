@@ -3,6 +3,7 @@ package com.example.daminshah.newsapp;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
     ItemClickListener listener;
     private Cursor cursor;
     private Context context;
+    private final String TAG = "NewsAdapter";
+    private int debug =10;
 
     public NewsAdapter(Cursor cursor, ItemClickListener listener) {
 
@@ -96,6 +99,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
 
         //Sets the TextViews and ImageView ,which gets the information from Database that is stored in Cursor
         public void bind(ItemHolder holder,int position){
+           // debug++;
+            //String d = String.valueOf(debug);
             cursor.moveToPosition(position);
             id=cursor.getLong(cursor.getColumnIndex(Contract.TABLE_ARTICLES._ID));
             articlename=cursor.getString(cursor.getColumnIndex(Contract.TABLE_ARTICLES.COLUMN_NAME_TITLE));
@@ -110,9 +115,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
 //            description.setText(item.getDescription());
 //            time.setText(item.getPublish());
 
-
+            Log.d(TAG,"URL-----"+imageUrl);
             title.setText(articlename);
             description.setText(desc);
+        //    Log.d(TAG,"Debug is:"+d);
             time.setText(published);
 
 

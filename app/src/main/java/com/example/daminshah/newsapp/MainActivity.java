@@ -2,32 +2,34 @@
 
 
     import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+    import android.content.SharedPreferences;
+    import android.database.Cursor;
+    import android.database.sqlite.SQLiteDatabase;
+    import android.net.Uri;
+    import android.os.Bundle;
+    import android.preference.PreferenceManager;
+    import android.support.v4.app.LoaderManager;
+    import android.support.v4.app.LoaderManager.LoaderCallbacks;
+    import android.support.v4.content.AsyncTaskLoader;
+    import android.support.v4.content.Loader;
+    import android.support.v7.app.AppCompatActivity;
+    import android.support.v7.widget.LinearLayoutManager;
+    import android.support.v7.widget.RecyclerView;
+    import android.util.Log;
+    import android.view.Menu;
+    import android.view.MenuItem;
+    import android.view.View;
+    import android.widget.ProgressBar;
+    import android.widget.TextView;
 
-import com.example.daminshah.newsapp.Database.Contract;
-import com.example.daminshah.newsapp.Database.DBHelper;
-import com.example.daminshah.newsapp.Database.DBUtils;
-import com.example.daminshah.newsapp.Model.NewsItem;
-import com.example.daminshah.newsapp.Scheduler.SCUtils;
+    import com.example.daminshah.newsapp.Database.Contract;
+    import com.example.daminshah.newsapp.Database.DBHelper;
+    import com.example.daminshah.newsapp.Database.DBUtils;
+    import com.example.daminshah.newsapp.Model.NewsItem;
+    import com.example.daminshah.newsapp.Scheduler.SCUtils;
 
-import java.net.URL;
-import java.util.ArrayList;
+    import java.net.URL;
+    import java.util.ArrayList;
 
     public class MainActivity extends AppCompatActivity implements LoaderCallbacks<ArrayList<Void>> , NewsAdapter.ItemClickListener {
         static final String TAG = "mainactivity";
@@ -77,6 +79,27 @@ import java.util.ArrayList;
            recyclerView.setAdapter(adapter);
 
 
+
+
+            loadonfirstrun();
+
+
+        }
+
+
+        private void loadonfirstrun()
+        {
+            SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            boolean data  = defaultSharedPreferences.getBoolean("data", true);
+            if (data) {
+              //  LoaderManager loaderManager=getLoaderManager().restartLoader(NEWS_LOADER,null,this).forceLoad();
+
+                LoaderManager loaderManager=getSupportLoaderManager();
+                loaderManager.restartLoader(NEWS_LOADER,null,this).forceLoad();
+                SharedPreferences.Editor editor = defaultSharedPreferences.edit();
+                editor.putBoolean("data", false);
+                editor.commit();
+            }
         }
 
 
